@@ -1,0 +1,26 @@
+{
+
+
+  "morning_news": "Good Morning, Here is some news for you"
+
+
+,
+
+    "home": "Home",
+    "general": "General",
+    "search": "Search",
+    "view_all": "View All",
+    "view_full_article": "View Full Article",
+    "go_to_home": "Go To Home"
+  ,
+
+    "theme": "Theme",
+    "dark": "Dark",
+    "language": "Language"
+  ,
+
+    "by": "By",
+    "minutes_ago": "minutes ago",
+    "supervised_by": "Supervised by"
+
+}
