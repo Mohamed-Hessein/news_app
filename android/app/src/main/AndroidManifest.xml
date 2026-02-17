@@ -9,6 +9,7 @@
     <application
         android:label="news_c_17_mohamed_mohamed_hussin_01552901158_7_to_10_mon_wed"
         android:name="${applicationName}"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

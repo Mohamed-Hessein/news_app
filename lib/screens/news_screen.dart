@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_c_17_mohamed_mohamed_hussin_01552901158_7_to_10_mon_wed/bloc/home_cubit.dart';
 import 'package:news_c_17_mohamed_mohamed_hussin_01552901158_7_to_10_mon_wed/bloc/home_state.dart';
+import 'package:news_c_17_mohamed_mohamed_hussin_01552901158_7_to_10_mon_wed/screens/web_view.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../core/api_manger.dart';
 import '../core/themeing/bloc/cubit.dart';
@@ -20,10 +23,20 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
+late  WebViewController controller ;
+
+
   List<bool> isClicked = [];
 
   @override
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = WebViewController();
+  }
   Widget build(BuildContext context) {
+
     return   BlocConsumer<HomeCubit, HomeState>(builder: (context,state){
       var bloc = context.watch<HomeCubit>();
 
@@ -40,13 +53,20 @@ class _NewsScreenState extends State<NewsScreen> {
       }else {   return SizedBox(
         height: 600,
         child: ListView.builder(
-          itemCount: bloc.newsData.length, itemBuilder: (BuildContext context, int index) {     var newsData = bloc.newsData[index];
+          itemCount: bloc.newsData.length, itemBuilder: (BuildContext context, int index) {
+
+          var newsData = bloc.newsData[index];
         if (isClicked.length != bloc.newsData.length) {
           isClicked = List.filled(bloc.newsData.length, false);
         }
         return  GestureDetector(
           onLongPress: (){
             isClicked[index] =!isClicked[index];
+           if(isClicked[index] ==true){
+             Timer(Duration(seconds: 1), (){
+               isClicked[index]  = false;
+             });
+           }
             setState(() {
 
             });
@@ -74,7 +94,20 @@ class _NewsScreenState extends State<NewsScreen> {
                     height: 56,
                     child: ElevatedButton(
                         style:ElevatedButton.styleFrom(backgroundColor: Colors.black,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))) ,
-                        onPressed: (){}, child: Center(child: Text('View Full Articel',style: TextStyle(fontSize: 20,color: Colors.white),),)),
+
+
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ArticleWebViewScreen(
+                                  url: newsData.url ?? '',
+                                ),
+                              ),
+                            );
+                          },
+
+                         child: Center(child: Text('View Full Articel',style: TextStyle(fontSize: 20,color: Colors.white),),)),
                   )
                 ],),
               ),),
@@ -107,5 +140,7 @@ class _NewsScreenState extends State<NewsScreen> {
          Center(child: Text(e.toString()),);
       }
     });
+
   }
+
 }
