@@ -64,12 +64,12 @@ class CatgroyScreen extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Column(children: [Text(  "morning_news",style: TextStyle(color:ThemeCubit.get(context).baseColors.textColors,fontSize: 24,fontWeight: FontWeight.w500),).tr(),
+            child: Column(children: [Text(  "morning_news",style: TextStyle(color:ThemeCubit.get(context).baseColors.textColors,fontSize: 14,fontWeight: FontWeight.w500),).tr(),
               SizedBox(height: 15,),
               SizedBox(
-                height: 600,
-                child: ListView.separated(
 
+                child: ListView.separated(
+shrinkWrap:true,
                   separatorBuilder: (context,i){
                     return SizedBox(height: 15,);
                   },

@@ -7,7 +7,7 @@ class CacheHelper {
   static const String _newsBoxName = "NewsBox1";
 
   static Future<Box<newsResponse>> _openNewsBox() async {
-    // امسح البوكس القديم لو موجود
+
     if (await Hive.boxExists(_newsBoxName)) {
       await Hive.deleteBoxFromDisk(_newsBoxName);
     }
